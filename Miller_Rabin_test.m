@@ -10,7 +10,6 @@ function out = Miller_Rabin_test(p)
     %    p = p - 1;
     % end
     %
-    %
     p1 = p-1;
     %
     % p-1 = (2^k) * q
@@ -31,6 +30,7 @@ function out = Miller_Rabin_test(p)
     aq = 1;
     qq = q; % keep q unchanged, use qq for following computation
     aa = a; % keep a unchanged, use aa for following computation
+    % 
     while qq ~= 0
         if mod(qq, 2) == 1
             aq = mod(aq * aa, p);
@@ -49,6 +49,7 @@ function out = Miller_Rabin_test(p)
         if mod(aq, p) == p1
             result = 'inconclusive';
         end
+        %
         if mod(aq, p) ~= p1
            j = 1; % number of iterations
            while strcmp(result, '') == 1 && j <= k -1
@@ -71,5 +72,4 @@ function out = Miller_Rabin_test(p)
     fprintf('current p = %d is: %s\n', p, result);
     out = result;
 return
-
 
