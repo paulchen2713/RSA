@@ -7,11 +7,11 @@ clc;
 % purpose: Alice wanna sends a message to Bob
 %
 % step 1: Bob choose two very large distinct primes p and q, and computes 
-%         n = p * q and £p(n) = (p-1) * (q-1)
+%         n = p * q and Â£p(n) = (p-1) * (q-1)
 %
-% step 2: Bob choose a random integer e, 1 < e < phi_n, such that gcd(e, £p(n)) = 1 
+% step 2: Bob choose a random integer e, 1 < e < phi_n, such that gcd(e, Â£p(n)) = 1 
 %
-% step 3: Bib finds d, 1 < d < £p(n), such that e * d = 1 mod £p(n)
+% step 3: Bib finds d, 1 < d < Â£p(n), such that e * d = 1 mod Â£p(n)
 %
 % step 4: Bob makes (n, e) public, and keeps (p, q, d) private
 %
@@ -28,20 +28,20 @@ clc;
 L = 13; % 13
 p = prime_generator(L);
 % generate q, 2^(N-1) < q < 2^N
-N = L+1; % 12, 14
+N = L + 1; % 12, 14
 q = prime_generator(N);
 %
 n = p * q;
 phi_n = (p-1) * (q-1);
 %
-% step 2: Bob choose a random integer e, 1 < e < £p(n), such that gcd(e, £p(n)) = 1
+% step 2: Bob choose a random integer e, 1 < e < Â£p(n), such that gcd(e, Â£p(n)) = 1
 %
 flag = 0;
 while flag == 0
     %
     e = floor((phi_n - 2) * rand(1)) + 2;
     %
-    % compute gcd(e, £p(n))
+    % compute gcd(e, Â£p(n))
     %
     % Algorithm 2.19 Extended Euclidean algorithm for integers
     %
@@ -74,8 +74,8 @@ while flag == 0
     end
 end
 %
-% step 3: Bob finds d, 1 < d < £p(n), such that e * d = 1 mod £p(n)
-%         because m^£p(n) = 1 mod n
+% step 3: Bob finds d, 1 < d < Â£p(n), such that e * d = 1 mod Â£p(n)
+%         because m^Â£p(n) = 1 mod n
 % check if xe is positive, cause we take xe positive only
 if xe < 0
     d = phi_n + xe;
@@ -159,7 +159,4 @@ fprintf('the recovered message is: %s \n', R_plaintext);
 %
 fprintf('the public keys [n, e] are: [%d, %d] \n', n, e);
 fprintf('the private keys [p, q, d] are: [%d, %d, %d] \n', p, q, d);
-%
-%
-
 
