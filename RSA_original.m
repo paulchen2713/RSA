@@ -7,11 +7,11 @@ clc;
 % purpose: Alice wanna sends a message to Bob
 %
 % step 1: Bob choose two very large distinct primes p and q, and computes 
-%         n = p * q and £p(n) = (p-1) * (q-1)
+%         n = p * q and Â£p(n) = (p-1) * (q-1)
 %
-% step 2: Bob choose a random integer e, 1 < e < phi_n, such that gcd(e, £p(n)) = 1 
+% step 2: Bob choose a random integer e, 1 < e < phi_n, such that gcd(e, Â£p(n)) = 1 
 %
-% step 3: Bib finds d, 1 < d < £p(n), such that e * d = 1 mod £p(n)
+% step 3: Bib finds d, 1 < d < Â£p(n), such that e * d = 1 mod Â£p(n)
 %
 % step 4: Bob makes (n, e) public, and keeps (p, q, d) private
 %
@@ -31,12 +31,12 @@ q = 311; % 311;
 n = p * q;
 phi_n = (p-1) * (q-1);
 %
-% step 2: Bob choose a random integer e, 1 < e < £p(n), such that gcd(e, £p(n)) = 1
+% step 2: Bob choose a random integer e, 1 < e < Â£p(n), such that gcd(e, Â£p(n)) = 1
 %
 % test for small deterministic prime e
 e = 1033;
 %
-% compute gcd(e, £p(n))
+% compute gcd(e, Â£p(n))
 %
 % Algorithm 2.19 Extended Euclidean algorithm for integers
 %
@@ -65,8 +65,8 @@ gcd = ve;
 xe = x2e; % x
 % ye = y2e;
 %
-% step 3: Bob finds d, 1 < d < £p(n), such that e * d = 1 mod £p(n)
-%         because m^£p(n) = 1 mod n
+% step 3: Bob finds d, 1 < d < Â£p(n), such that e * d = 1 mod Â£p(n)
+%         because m^Â£p(n) = 1 mod n
 %
 % check if xe is positive, cause we take xe positive only
 if xe < 0
@@ -130,7 +130,6 @@ for i = 1 : ms
         cc = mod(cc * cc, n);
     end
 end
-%
 R_plaintext = zeros(1, 1);
 j = 1;
 for i = 1 : ms
@@ -148,7 +147,4 @@ R_plaintext = char(R_plaintext);
 %
 fprintf('the original  message is: %s \n', plaintext);
 fprintf('the recovered message is: %s \n', R_plaintext);
-%
-%
-
 
